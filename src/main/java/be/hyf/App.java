@@ -4,6 +4,7 @@ import java.net.InetSocketAddress;
 import java.util.concurrent.Executors;
 
 import be.hyf.handlers.FaviconHandler;
+import be.hyf.handlers.FilmHandler;
 import be.hyf.handlers.LanguageHandler;
 import be.hyf.handlers.RootHandler;
 import com.sun.net.httpserver.HttpServer;
@@ -20,6 +21,7 @@ public class App {
         server.createContext("/favicon.ico", new FaviconHandler());
         server.createContext("/", new RootHandler());
         server.createContext("/language", new LanguageHandler());
+        server.createContext("/film", new FilmHandler());
         // use virtual threads
         //https://docs.oracle.com/en/java/javase/21/docs/api/jdk.httpserver/com/sun/net/httpserver/HttpServer.html#setExecutor(java.util.concurrent.Executor)
         server.setExecutor(Executors.newVirtualThreadPerTaskExecutor());
