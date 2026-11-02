@@ -4,7 +4,7 @@ import java.sql.Timestamp;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import be.hyf.helpers.Json;
 
 public class Language {
     private int id;
@@ -52,13 +52,11 @@ public class Language {
     }
 
     public String toJSON() throws JsonProcessingException {
-        ObjectMapper obm = new ObjectMapper();
-        return obm.writeValueAsString(this);
+        return Json.MAPPER.writeValueAsString(this);
     }
 
     public static Language fromJSON(String json) throws JsonProcessingException {
-        ObjectMapper obm = new ObjectMapper();
-        return obm.readValue(json, Language.class);
+        return Json.MAPPER.readValue(json, Language.class);
     }
 
 }

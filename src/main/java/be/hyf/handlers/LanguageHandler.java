@@ -3,13 +3,12 @@ package be.hyf.handlers;
 import be.hyf.entities.Language;
 import be.hyf.helpers.Db;
 import be.hyf.helpers.ErrorMessage;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import be.hyf.helpers.Json;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -28,11 +27,8 @@ public class LanguageHandler implements HttpHandler {
             exchange.close();
             return;
         }
-        String response = "";
         List<Language> languagesList = new ArrayList<>();
         String filePath = "conf" + File.separator + "db.properties";
-        // set Content-Type application/json
-        exchange.getResponseHeaders().set("Content-Type", "application/json");
         try (Connection conn = Db.getConnection(filePath)) {
             PreparedStatement stmt = conn.prepareStatement(
                     "SELECT language_id, name, last_update FROM language");
@@ -45,21 +41,10 @@ public class LanguageHandler implements HttpHandler {
                 );
                 languagesList.add(language);
             }
-            ObjectMapper objectMapper = new ObjectMapper();
-            String languagesJson = objectMapper.writeValueAsString(languagesList);
-            exchange.sendResponseHeaders(200, languagesJson.length());
-            try (OutputStream os = exchange.getResponseBody()) {
-                os.write(languagesJson.getBytes());
-            }
+            Json.sendObject(exchange, 200, languagesList);
 
         } catch (SQLException e) {
-            ErrorMessage errorMessage = new ErrorMessage(e.getMessage());
-            ObjectMapper objectMapper = new ObjectMapper();
-            String errorMessageJson = objectMapper.writeValueAsString(errorMessage);
-            exchange.sendResponseHeaders(500, errorMessageJson.length());
-            try (OutputStream os = exchange.getResponseBody()) {
-                os.write(errorMessageJson.getBytes());
-            }
+            Json.sendObject(exchange, 500, new ErrorMessage(e.getMessage()));
         }
     }
 }
