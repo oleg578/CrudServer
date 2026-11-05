@@ -28,8 +28,8 @@ public class LanguageHandler implements HttpHandler {
             return;
         }
         List<Language> languagesList = new ArrayList<>();
-        String filePath = "conf" + File.separator + "db.properties";
-        try (Connection conn = Db.getConnection(filePath)) {
+        String confPath = "conf" + File.separator + "db.properties";
+        try (Connection conn = Db.getConnection(confPath)) {
             PreparedStatement stmt = conn.prepareStatement(
                     "SELECT language_id, name, last_update FROM language");
             ResultSet languages = stmt.executeQuery();
