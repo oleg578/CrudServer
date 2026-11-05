@@ -2,7 +2,6 @@ package be.hyf;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.util.concurrent.Executors;
-
 import be.hyf.handlers.FaviconHandler;
 import be.hyf.handlers.FilmHandler;
 import be.hyf.handlers.LanguageHandler;
@@ -28,6 +27,4 @@ public class App {
         server.start();
         System.out.println("Server started - http://localhost:8080");
     }
-
-
 }
