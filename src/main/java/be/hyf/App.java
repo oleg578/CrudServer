@@ -1,9 +1,7 @@
 package be.hyf;
 import java.io.IOException;
-import be.hyf.handlers.FaviconHandler;
-import be.hyf.handlers.FilmHandler;
-import be.hyf.handlers.LanguageHandler;
-import be.hyf.handlers.RootHandler;
+
+import be.hyf.handlers.*;
 import be.hyf.srv.SpringApplication;
 import be.hyf.srv.CrudServer;
 
@@ -19,6 +17,7 @@ public class App {
                     .addHandler("/favicon.ico", new FaviconHandler())
                     .addHandler("/language", new LanguageHandler())
                     .addHandler("/film", new FilmHandler())
+                    .addHandler("/headerslist", new HeadersListHandler())
                     .start();
         } catch (Exception e) {
             e.printStackTrace();
