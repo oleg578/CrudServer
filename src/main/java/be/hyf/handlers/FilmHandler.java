@@ -32,7 +32,7 @@ public class FilmHandler implements HttpHandler {
         List<Film> filmList = new ArrayList<>();
         String confPath = "conf" + File.separator + "db.properties";
         try (Connection conn = Db.getConnection(confPath);
-             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM film limit 30");
+             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM film limit 3");
              ResultSet filmCursor = stmt.executeQuery()) {
             while (filmCursor.next()) {
                 Film film = new Film();
