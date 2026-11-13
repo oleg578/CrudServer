@@ -23,9 +23,11 @@ public class RootHandler implements HttpHandler {
         }
         try (InputStream in = exchange.getRequestBody()) {
             String body = new String(in.readAllBytes());
-            String msg = !body.isEmpty() ? body : "the request doesn't have a body or it is empty";
-           Message out = new Message(msg);
-           Json.sendObject(exchange, 200, out);
+            String msg = !body.isEmpty() ? body : "";
+            if (!msg.isEmpty()) {
+                Message out = new Message(msg);
+                Json.sendObject(exchange, 200, out);
+            }
         } catch (IOException e) {
             ErrorMessage err = new ErrorMessage("Internal Server Error: " + e.getMessage());
             Json.sendObject(exchange, 500, err);
