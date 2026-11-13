@@ -1,4 +1,5 @@
 package be.hyf;
+
 import java.io.IOException;
 
 import be.hyf.handlers.*;
@@ -10,8 +11,7 @@ public class App {
     public static void main(String[] args) throws IOException {
         // start spring application on port 8080
         try {
-            ApiServer srv = SpringApplication.create(ApiServer.class);
-            srv
+            SpringApplication.create(ApiServer.class)
                     .init(8080)
                     .addHandler("/", new RootHandler())
                     .addHandler("/favicon.ico", new FaviconHandler())
