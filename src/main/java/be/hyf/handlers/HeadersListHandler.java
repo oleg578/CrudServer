@@ -1,14 +1,11 @@
 package be.hyf.handlers;
 
-import be.hyf.helpers.ErrorMessage;
 import be.hyf.helpers.Json;
-import be.hyf.helpers.Message;
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
 import java.io.IOException;
-import java.io.InputStream;
 
 public class HeadersListHandler implements HttpHandler {
     @Override
