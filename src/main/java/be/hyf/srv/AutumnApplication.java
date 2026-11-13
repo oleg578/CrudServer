@@ -1,6 +1,6 @@
 package be.hyf.srv;
 
-public class SpringApplication {
+public class AutumnApplication {
     public static <T> T create(Class<T> source) {
         try {
             return source.getDeclaredConstructor().newInstance();
