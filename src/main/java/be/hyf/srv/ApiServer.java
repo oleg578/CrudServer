@@ -8,11 +8,11 @@ import java.io.UncheckedIOException;
 import java.net.InetSocketAddress;
 import java.util.concurrent.Executors;
 
-public class CrudServer {
+public class ApiServer {
     private HttpServer server;
     private int port;
 
-    public CrudServer init(int port) {
+    public ApiServer init(int port) {
         try {
             this.server = HttpServer.create(new InetSocketAddress(port), 0);
             this.server.setExecutor(Executors.newVirtualThreadPerTaskExecutor());
@@ -23,7 +23,7 @@ public class CrudServer {
         return this;
     }
 
-    public CrudServer addHandler(String path, HttpHandler handler) {
+    public ApiServer addHandler(String path, HttpHandler handler) {
         server.createContext(path, handler);
         return this;
     }

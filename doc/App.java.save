@@ -7,7 +7,7 @@ import be.hyf.handlers.FilmHandler;
 import be.hyf.handlers.LanguageHandler;
 import be.hyf.handlers.RootHandler;
 import be.hyf.srv.SpringApplication;
-import be.hyf.srv.CrudServer;
+import be.hyf.srv.ApiServer;
 import com.sun.net.httpserver.HttpServer;
 
 public class App {
